@@ -1,10 +1,15 @@
-"use server"
+"use server";
 
-import { cookies } from "next/headers"
+import { cookies } from "next/headers";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://medimert-server.vercel.app/api";
 
-export async function registerUser(name: string, email: string, password: string) {
+export async function registerUser(
+  name: string,
+  email: string,
+  password: string
+) {
   try {
     const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
@@ -13,21 +18,21 @@ export async function registerUser(name: string, email: string, password: string
       },
       body: JSON.stringify({ name, email, password }),
       cache: "no-store",
-    })
+    });
 
-    const data = await response.json()
+    const data = await response.json();
 
     if (data.success) {
-      ;(await cookies()).set("token", data.data.token)
+      (await cookies()).set("token", data.data.token);
     }
 
-    return data
+    return data;
   } catch (error) {
-    console.error("Registration error:", error)
+    console.error("Registration error:", error);
     return {
       success: false,
       message: "An error occurred during registration",
-    }
+    };
   }
 }
 
@@ -40,9 +45,9 @@ export async function loginUser(email: string, password: string) {
       },
       body: JSON.stringify({ email, password }),
       cache: "no-store",
-    })
+    });
 
-    const data = await response.json()
+    const data = await response.json();
 
     if (data.success) {
       cookies().set("token", data.data.token, {
@@ -50,28 +55,28 @@ export async function loginUser(email: string, password: string) {
         secure: process.env.NODE_ENV === "production",
         maxAge: 60 * 60 * 24 * 7, // 1 week
         path: "/",
-      })
+      });
     }
 
-    return data
+    return data;
   } catch (error) {
-    console.error("Login error:", error)
+    console.error("Login error:", error);
     return {
       success: false,
       message: "An error occurred during login",
-    }
+    };
   }
 }
 
 export async function getUserProfile() {
   try {
-    const token = cookies().get("token")?.value
+    const token = cookies().get("token")?.value;
 
     if (!token) {
       return {
         success: false,
         message: "Not authenticated",
-      }
+      };
     }
 
     const response = await fetch(`${API_URL}/auth/profile`, {
@@ -79,36 +84,36 @@ export async function getUserProfile() {
         Authorization: `Bearer ${token}`,
       },
       cache: "no-store",
-    })
+    });
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching user profile:", error)
+    console.error("Error fetching user profile:", error);
     return {
       success: false,
       message: "Error fetching user profile",
-    }
+    };
   }
 }
 
 export async function updateUserProfile(userData: {
-  name?: string
-  phoneNumber?: string
+  name?: string;
+  phoneNumber?: string;
   address?: {
-    address: string
-    city: string
-    postalCode: string
-    country: string
-  }
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
 }) {
   try {
-    const token = cookies().get("token")?.value
+    const token = cookies().get("token")?.value;
 
     if (!token) {
       return {
         success: false,
         message: "Not authenticated",
-      }
+      };
     }
 
     const response = await fetch(`${API_URL}/auth/profile`, {
@@ -119,27 +124,30 @@ export async function updateUserProfile(userData: {
       },
       body: JSON.stringify(userData),
       cache: "no-store",
-    })
+    });
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error updating user profile:", error)
+    console.error("Error updating user profile:", error);
     return {
       success: false,
       message: "Error updating user profile",
-    }
+    };
   }
 }
 
-export async function changePassword(currentPassword: string, newPassword: string) {
+export async function changePassword(
+  currentPassword: string,
+  newPassword: string
+) {
   try {
-    const token = cookies().get("token")?.value
+    const token = cookies().get("token")?.value;
 
     if (!token) {
       return {
         success: false,
         message: "Not authenticated",
-      }
+      };
     }
 
     const response = await fetch(`${API_URL}/auth/change-password`, {
@@ -150,27 +158,27 @@ export async function changePassword(currentPassword: string, newPassword: strin
       },
       body: JSON.stringify({ currentPassword, newPassword }),
       cache: "no-store",
-    })
+    });
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error changing password:", error)
+    console.error("Error changing password:", error);
     return {
       success: false,
       message: "Error changing password",
-    }
+    };
   }
 }
 
 export async function getAllUsers() {
   try {
-    const token = cookies().get("token")?.value
+    const token = cookies().get("token")?.value;
 
     if (!token) {
       return {
         success: false,
         message: "Not authenticated",
-      }
+      };
     }
 
     const response = await fetch(`${API_URL}/auth/all-users`, {
@@ -178,27 +186,30 @@ export async function getAllUsers() {
         Authorization: `Bearer ${token}`,
       },
       cache: "no-store",
-    })
+    });
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching users:", error)
+    console.error("Error fetching users:", error);
     return {
       success: false,
       message: "Error fetching users",
-    }
+    };
   }
 }
 
-export async function updateUserStatus(targetUserId: string, status: "active" | "inactive") {
+export async function updateUserStatus(
+  targetUserId: string,
+  status: "active" | "inactive"
+) {
   try {
-    const token = cookies().get("token")?.value
+    const token = cookies().get("token")?.value;
 
     if (!token) {
       return {
         success: false,
         message: "Not authenticated",
-      }
+      };
     }
 
     const response = await fetch(`${API_URL}/auth/update-status`, {
@@ -209,20 +220,19 @@ export async function updateUserStatus(targetUserId: string, status: "active" | 
       },
       body: JSON.stringify({ targetUserId, status }),
       cache: "no-store",
-    })
+    });
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error updating user status:", error)
+    console.error("Error updating user status:", error);
     return {
       success: false,
       message: "Error updating user status",
-    }
+    };
   }
 }
 
 export async function logoutUser() {
-  cookies().delete("token")
-  return { success: true }
+  cookies().delete("token");
+  return { success: true };
 }
-

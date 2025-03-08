@@ -2,7 +2,8 @@
 
 import { cookies } from "next/headers";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://medimert-server.vercel.app/api";
 
 export async function getMedicines(
   page = 1,
