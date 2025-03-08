@@ -53,6 +53,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { IOrder } from "@/src/types/order.type";
 
 export default function AdminOrdersPage() {
   const router = useRouter();
@@ -60,7 +61,7 @@ export default function AdminOrdersPage() {
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<IOrder[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -323,12 +324,12 @@ export default function AdminOrdersPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {orders.map((order: any) => (
+                  {orders.map((order: IOrder) => (
                     <TableRow key={order._id}>
                       <TableCell className="font-medium">
                         #{order._id.slice(-6)}
                       </TableCell>
-                      <TableCell>{order.user?.name || "Unknown"}</TableCell>
+                      <TableCell>{order.userId?.name || "Unknown"}</TableCell>
                       <TableCell>{formatDate(order.createdAt)}</TableCell>
                       <TableCell>{order.items.length}</TableCell>
                       <TableCell>{formatPrice(order.totalPrice)}</TableCell>
