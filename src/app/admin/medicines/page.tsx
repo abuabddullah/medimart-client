@@ -40,6 +40,7 @@ import {
 } from "@/src/lib/actions/medicines";
 import { formatPrice } from "@/src/lib/utils";
 import { Loader2, Plus, Search, Edit, Trash2, AlertCircle } from "lucide-react";
+import { IMedicine } from "@/src/types/medicine";
 
 export default function AdminMedicinesPage() {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function AdminMedicinesPage() {
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
-  const [medicines, setMedicines] = useState([]);
+  const [medicines, setMedicines] = useState<IMedicine[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -379,7 +380,7 @@ export default function AdminMedicinesPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {medicines.map((medicine: any) => (
+                  {medicines.map((medicine: IMedicine) => (
                     <TableRow key={medicine._id}>
                       <TableCell className="font-medium">
                         {medicine.name}

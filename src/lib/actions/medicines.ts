@@ -1,5 +1,6 @@
 "use server";
 
+import { TSearchParams } from "@/src/types";
 import { cookies } from "next/headers";
 
 const API_URL =
@@ -8,7 +9,11 @@ const API_URL =
 export async function getMedicines(
   page = 1,
   limit = 10,
-  searchParams = { category: "", manufacturer: "", requiresPrescription: false }
+  searchParams: TSearchParams = {
+    category: "",
+    manufacturer: "",
+    requiresPrescription: false,
+  }
 ) {
   try {
     let url = `${API_URL}/medicines?page=${page}&limit=${limit}`;
