@@ -8,3 +8,6 @@
 - localstorage সরাতে হবে redux use করতে হবে
 - using Moment.js for formattedDate
 - typescript issue
+- resolve these 2
+- - hooks\use-mobile.tsx
+- - hooks\use-toast.ts

@@ -15,12 +15,23 @@ export interface AuthContextType {
   loading: boolean;
 }
 
+export interface Address {
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
 export interface UserType {
   _id: string;
   name: string;
   email: string;
-  role: "admin" | "customer";
-  status: "active" | "inactive";
+  password: string;
+  role: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  address: Address;
 }
 
 export interface AuthState {
