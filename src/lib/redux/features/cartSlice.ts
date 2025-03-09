@@ -20,7 +20,7 @@ const cartSlice = createSlice({
       );
 
       if (existingItem) {
-        existingItem.quantity += newItem.quantity;
+        return alert("Item added in cart");
       } else {
         state?.items?.push(newItem);
       }

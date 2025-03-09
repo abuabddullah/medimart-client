@@ -7,6 +7,7 @@
 - using Moment.js for formattedDate
 - browse by category repeation fix করতে হবে
 - typescript issue
+- fix the quantity handle fn in src\app\medicine\[id]\page.tsx
 - resolve these 2
 - - hooks\use-mobile.tsx
 - - hooks\use-toast.ts

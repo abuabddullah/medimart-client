@@ -11,6 +11,7 @@ import {
   getManufacturers,
   getMedicines,
 } from "@/src/lib/actions/medicines";
+import { IMedicine } from "@/src/types/medicine";
 import { Filter, Loader2, Search } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -18,8 +19,7 @@ import { useEffect, useState } from "react";
 export default function MedicinesPage() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
-
-  const [medicines, setMedicines] = useState([]);
+  const [medicines, setMedicines] = useState<IMedicine[]>([]);
   const [categories, setCategories] = useState([]);
   const [manufacturers, setManufacturers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -274,7 +274,7 @@ export default function MedicinesPage() {
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {medicines.map((medicine) => (
+                {medicines.map((medicine: IMedicine) => (
                   <MedicineCard key={medicine._id} {...medicine} />
                 ))}
               </div>
