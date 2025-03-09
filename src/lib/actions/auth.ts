@@ -100,7 +100,7 @@ export async function updateUserProfile(userData: {
   name?: string;
   phoneNumber?: string;
   address?: {
-    street: string;
+    address: string;
     city: string;
     postalCode: string;
     country: string;
