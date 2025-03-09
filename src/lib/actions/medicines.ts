@@ -17,20 +17,25 @@ export async function getMedicines(
 ) {
   try {
     let url = `${API_URL}/medicines?page=${page}&limit=${limit}`;
+
+    // Append individual search parameters
     if (searchParams.category) {
       url += `&category=${searchParams.category}`;
     }
     if (searchParams.manufacturer) {
       url += `&manufacturer=${searchParams.manufacturer}`;
     }
-    if (searchParams.requiresPrescription) {
+    if (searchParams.requiresPrescription !== undefined) {
       url += `&requiresPrescription=${searchParams.requiresPrescription}`;
     }
 
+    // Append all search parameters using URLSearchParams
     if (searchParams) {
       const params = new URLSearchParams();
       for (const [key, value] of Object.entries(searchParams)) {
-        if (value) params.append(key, value);
+        if (value !== undefined && value !== "") {
+          params.append(key, value.toString()); // Convert all values to strings
+        }
       }
       if (params.toString()) {
         url += `&${params.toString()}`;
