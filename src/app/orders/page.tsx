@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { IOrder } from "@/src/types/order.type";
+import { IMedicine } from "@/src/types/medicine";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
@@ -59,7 +61,7 @@ export default function OrdersPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {orders.map((order) => (
+              {orders.map((order: IOrder) => (
                 <div
                   key={order._id}
                   className="border rounded-lg overflow-hidden"
@@ -76,15 +78,13 @@ export default function OrdersPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    {order.items.map((item) => (
+                    {order.items.map((item: IMedicine) => (
                       <div
                         key={item._id}
                         className="flex justify-between items-center"
                       >
                         <div className="flex items-center gap-2">
-                          <div className="font-medium">
-                            {item?.medicine?.name}
-                          </div>
+                          <div className="font-medium">{item?.name}</div>
                           <div className="text-sm text-gray-500">
                             x{item.quantity}
                           </div>
