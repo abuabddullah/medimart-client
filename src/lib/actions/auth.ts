@@ -98,9 +98,9 @@ export async function getUserProfile() {
 
 export async function updateUserProfile(userData: {
   name?: string;
-  phoneNumber?: string;
+  phone?: string;
   address?: {
-    address: string;
+    street: string;
     city: string;
     postalCode: string;
     country: string;

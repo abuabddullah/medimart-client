@@ -5,6 +5,7 @@
 - পরে আরো improve করতে হবে
 - pdf handle সরাতে হবে
 - using Moment.js for formattedDate
+- browse by category repeation fix করতে হবে
 - typescript issue
 - resolve these 2
 - - hooks\use-mobile.tsx

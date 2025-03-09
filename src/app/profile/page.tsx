@@ -45,8 +45,8 @@ export default function ProfilePage() {
   const [orders, setOrders] = useState([]);
   const [prescriptions, setPrescriptions] = useState([]);
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
@@ -63,9 +63,9 @@ export default function ProfilePage() {
     }
 
     if (user) {
-      setName(user.name);
-      setPhoneNumber(user.phoneNumber || "");
-      setAddress(user.address?.address || "");
+      setName(user.name || "");
+      setPhone(user.phone || "");
+      setStreet(user.address?.street || "");
       setCity(user.address?.city || "");
       setPostalCode(user.address?.postalCode || "");
       setCountry(user.address?.country || "");
@@ -133,9 +133,9 @@ export default function ProfilePage() {
 
       const userData = {
         name,
-        phoneNumber,
+        phone,
         address: {
-          address,
+          street,
           city,
           postalCode,
           country,
@@ -285,8 +285,8 @@ export default function ProfilePage() {
                 <Label htmlFor="phoneNumber">Phone Number</Label>
                 <Input
                   id="phoneNumber"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -315,8 +315,8 @@ export default function ProfilePage() {
                 <Label htmlFor="address">Address</Label>
                 <Textarea
                   id="address"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  value={street}
+                  onChange={(e) => setStreet(e.target.value)}
                   placeholder="Enter your street address"
                 />
               </div>

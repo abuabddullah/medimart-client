@@ -1,7 +1,8 @@
-import { AuthState, UserType } from "@/src/types/auth";
+import { AuthState, IAuthState, IUserType, UserType } from "@/src/types/auth";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: AuthState = {
+// const initialState: AuthState = {
+const initialState: IAuthState = {
   user: null,
   token: null,
   isAuthenticated: false,
@@ -14,14 +15,16 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (
       state,
-      action: PayloadAction<{ user: UserType; token: string }>
+      // action: PayloadAction<{ user: UserType; token: string }>
+      action: PayloadAction<{ user: IUserType; token: string }>
     ) => {
       const { user, token } = action.payload;
       state.user = user;
       state.token = token;
       state.isAuthenticated = true;
     },
-    setUser: (state, action: PayloadAction<UserType>) => {
+    // setUser: (state, action: PayloadAction<UserType>) => {
+    setUser: (state, action: PayloadAction<IUserType>) => {
       state.user = action.payload;
       state.isAuthenticated = true;
     },

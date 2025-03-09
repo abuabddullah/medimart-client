@@ -6,23 +6,15 @@ export interface User {
   status: "active" | "inactive";
 }
 
-export interface AuthContextType {
-  user: User | null;
-  token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
-  logout: () => void;
-  loading: boolean;
-}
-
 export interface Address {
   city: string;
   postalCode: string;
   country: string;
+  address?: string;
 }
 
 export interface UserType {
-  _id: string;
+  _id?: string;
   name: string;
   email: string;
   password: string;
@@ -30,12 +22,38 @@ export interface UserType {
   status: string;
   createdAt: string;
   updatedAt: string;
-  __v: number;
+  __v?: number;
   address: Address;
+  phoneNumber?: string;
+}
+export interface IUserType {
+  _id?: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  password?: string;
+  role?: "customer" | "admin";
+  address?: {
+    street?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    country?: string;
+  };
+  dateOfBirth?: Date;
+  status?: "active" | "inactive";
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface AuthState {
   user: UserType | null;
+  token: string | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+}
+export interface IAuthState {
+  user: IUserType | null;
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
