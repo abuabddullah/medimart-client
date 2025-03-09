@@ -5,8 +5,9 @@
 - পরে আরো improve করতে হবে
 - pdf handle সরাতে হবে
 - using Moment.js for formattedDate
-- browse by category repeation fix করতে হবে
-- typescript issue
+- /shop page এ pagination / infinite scroll
+- /medicine/:id not working
+- create and update medicine এ picture upload option
 - fix the quantity handle fn in src\app\medicine\[id]\page.tsx
 - resolve these 2
 - - hooks\use-mobile.tsx
