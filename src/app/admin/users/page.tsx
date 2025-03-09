@@ -36,6 +36,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Label } from "@/src/components/Label";
 import { getAllUsers, updateUserStatus } from "@/src/lib/actions/auth";
 import { useAppSelector } from "@/src/lib/redux/hooks";
+import { UserType } from "@/src/types/auth";
 import {
   AlertCircle,
   Eye,
@@ -54,14 +55,16 @@ export default function AdminUsersPage() {
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<UserType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [totalUsers, setTotalUsers] = useState(0);
 
   // Status update dialog
   const [isStatusDialogOpen, setIsStatusDialogOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
-  const [newStatus, setNewStatus] = useState("");
+  const [newStatus, setNewStatus] = useState<"active" | "inactive" | undefined>(
+    undefined
+  );
   const [statusLoading, setStatusLoading] = useState(false);
 
   useEffect(() => {
@@ -148,7 +151,7 @@ export default function AdminUsersPage() {
 
         // Update the user in the local state যাতে promptly ui এ দেখা যায়
         setUsers(
-          users.map((u: any) =>
+          users.map((u: UserType) =>
             u._id === selectedUser._id ? { ...u, status: newStatus } : u
           )
         );
@@ -238,7 +241,7 @@ export default function AdminUsersPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {users.map((user: any) => (
+                  {users.map((user: UserType) => (
                     <TableRow key={user._id}>
                       <TableCell className="font-medium">{user.name}</TableCell>
                       <TableCell>{user.email}</TableCell>
@@ -321,7 +324,18 @@ export default function AdminUsersPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="status">Status</Label>
-                <Select value={newStatus} onValueChange={setNewStatus}>
+                <Select
+                  value={newStatus}
+                  onValueChange={(value) => {
+                    if (
+                      value === "active" ||
+                      value === "inactive" ||
+                      value === undefined
+                    ) {
+                      setNewStatus(value);
+                    }
+                  }}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
