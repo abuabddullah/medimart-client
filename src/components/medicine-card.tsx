@@ -73,7 +73,7 @@ export function MedicineCard({
           </h3>
         </Link>
         <div className="text-xs text-muted-foreground mt-1">{manufacturer}</div>
-        <div className="mt-2 font-bold">{formatPrice(price)}</div>
+        <div className="mt-2 font-bold">{formatPrice(price as number)}</div>
       </CardContent>
       <CardFooter className="p-4 pt-0 flex gap-2">
         <Button className="w-full" size="sm" onClick={handleAddToCart}>
