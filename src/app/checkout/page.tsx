@@ -25,12 +25,15 @@ import { formatPrice } from "@/src/lib/utils";
 import { AlertCircle, Loader2, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ICartItem } from "@/src/types/cart";
 
 export default function CheckoutPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { toast } = useToast();
-  const { items } = useAppSelector((state) => state.cart);
+  const { items } = useAppSelector((state) => state.cart) as {
+    items: ICartItem[];
+  };
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(false);
