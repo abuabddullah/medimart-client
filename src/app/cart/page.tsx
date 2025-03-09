@@ -15,13 +15,16 @@ import {
 } from "@/src/lib/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import { formatPrice } from "@/src/lib/utils";
+import { ICartItem } from "@/src/types/cart";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function CartPage() {
-  const { items } = useAppSelector((state) => state.cart);
+  const { items } = useAppSelector((state) => state.cart) as {
+    items: ICartItem[];
+  };
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { toast } = useToast();
@@ -47,7 +50,7 @@ export default function CartPage() {
   };
 
   const subtotal = items?.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + (item.price ?? 0) * item.quantity,
     0
   );
   const shipping = 5.0;
@@ -76,7 +79,7 @@ export default function CartPage() {
       {hasItems ? (
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-4">
-            {items.map((item) => (
+            {items.map((item: ICartItem) => (
               <Card key={item._id}>
                 <CardContent className="p-4">
                   <div className="flex gap-4">
