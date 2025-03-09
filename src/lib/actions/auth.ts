@@ -70,7 +70,7 @@ export async function loginUser(email: string, password: string) {
 
 export async function getUserProfile() {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -100,14 +100,14 @@ export async function updateUserProfile(userData: {
   name?: string;
   phoneNumber?: string;
   address?: {
-    address: string;
+    street: string;
     city: string;
     postalCode: string;
     country: string;
   };
 }) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -141,7 +141,7 @@ export async function changePassword(
   newPassword: string
 ) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -172,7 +172,7 @@ export async function changePassword(
 
 export async function getAllUsers() {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -203,7 +203,7 @@ export async function updateUserStatus(
   status: "active" | "inactive"
 ) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {

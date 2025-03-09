@@ -8,7 +8,7 @@ const API_URL =
 
 export async function uploadPrescription(formData: FormData) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -39,7 +39,7 @@ export async function uploadPrescription(formData: FormData) {
 
 export async function getMyPrescriptions() {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -71,7 +71,7 @@ export async function getMyPrescriptions() {
 
 export async function getPrescriptionById(id: string) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -103,7 +103,7 @@ export async function getPrescriptionById(id: string) {
 
 export async function getAllPrescriptions(page = 1, limit = 10) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
@@ -141,7 +141,7 @@ export async function updatePrescriptionStatus(
   status: "approved" | "rejected"
 ) {
   try {
-    const token = cookies().get("token")?.value;
+    const token = (await cookies()).get("token")?.value;
 
     if (!token) {
       return {
