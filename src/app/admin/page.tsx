@@ -33,7 +33,7 @@ import { useEffect, useState } from "react";
 export default function AdminDashboard() {
   const router = useRouter();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
@@ -50,21 +50,6 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (user && user.role !== "admin") {
-      toast({
-        title: "Access Denied",
-        description: "You do not have permission to access this page",
-        variant: "destructive",
-      });
-      router.push("/");
-      return;
-    }
-
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
@@ -135,7 +120,7 @@ export default function AdminDashboard() {
     };
 
     fetchDashboardData();
-  }, [isAuthenticated, router, user, toast]);
+  }, [router, user, toast]);
   const handleupdatePrescriptionStatus = async (
     prescriptionId: string,
     status: "approved" | "rejected"

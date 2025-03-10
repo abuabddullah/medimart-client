@@ -19,13 +19,11 @@ import { ICartItem } from "@/src/types/cart";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function CartPage() {
   const { items } = useAppSelector((state) => state.cart) as {
     items: ICartItem[];
   };
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { toast } = useToast();
   const router = useRouter();
@@ -35,12 +33,6 @@ export default function CartPage() {
 
     dispatch(updateQuantity({ id, quantity: newQuantity }));
   };
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-  }, [isAuthenticated, router, user]);
   const removeItem = (id: string, name: string) => {
     dispatch(removeFromCart(id));
     toast({
@@ -57,16 +49,6 @@ export default function CartPage() {
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
-    if (!isAuthenticated) {
-      toast({
-        title: "Login required",
-        description: "Please login to proceed to checkout.",
-        variant: "destructive",
-      });
-      router.push("/login");
-      return;
-    }
-
     router.push("/checkout");
   };
 

@@ -16,7 +16,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { uploadPrescription } from "@/src/lib/actions/prescriptions";
-import { useAppSelector } from "@/src/lib/redux/hooks";
 import { FileText, Info, Loader2, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -24,7 +23,6 @@ import { useState } from "react";
 export default function UploadPrescriptionPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(false);
   const [prescriptionFile, setPrescriptionFile] = useState<File | null>(null);
@@ -67,16 +65,6 @@ export default function UploadPrescriptionPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!isAuthenticated) {
-      toast({
-        title: "Login required",
-        description: "Please login to upload a prescription",
-        variant: "destructive",
-      });
-      router.push("/login");
-      return;
-    }
 
     if (!prescriptionFile) {
       setFileError("Please select a file to upload");

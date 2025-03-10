@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -6,6 +7,19 @@ export async function middleware(req: NextRequest) {
   console.log("🚀 ~ middleware ~ pathname:", pathname);
   const token = (await cookies()).get("token")?.value;
   console.log("🚀 ~ middleware ~ token:", token);
+
+  let userRole = null;
+
+  if (token) {
+    try {
+      const decoded = jwt.decode(token) as { role?: string } | null;
+      userRole = decoded?.role || null;
+    } catch (error) {
+      console.error("Invalid token:", error);
+    }
+  }
+
+  console.log("🚀 ~ middleware ~ userRole:", userRole);
 
   // Define public and protected routes
   const openRoutes = [
@@ -21,10 +35,13 @@ export async function middleware(req: NextRequest) {
     "/checkout",
     "/orders",
     "/payment",
+    "/payment/failed",
+    "/payment/success",
+    "/payment/cancelled",
     "/prescriptions",
-    "/prescription/upload",
+    "/prescriptions/upload",
     "/profile",
-    "/profile/review",
+    "/profile/reviews",
   ];
   const adminRoutes = [
     "/admin",
@@ -46,15 +63,28 @@ export async function middleware(req: NextRequest) {
   // Redirect if not authenticated for auth routes
   if (authRoutes.includes(pathname)) {
     if (!token) {
-      return NextResponse.redirect(new URL("/login", req.url));
+      return NextResponse.redirect(
+        new URL(
+          `/login?callbackUrl=${encodeURIComponent(req.nextUrl.href)}`,
+          req.url
+        )
+      );
     }
     return NextResponse.next();
   }
 
   // Redirect if not admin for admin routes
   if (adminRoutes.includes(pathname)) {
-    if (!token || token.role !== "admin") {
-      return NextResponse.redirect(new URL("/", req.url));
+    if (!token || userRole !== "admin") {
+      // Force logout
+      const response = NextResponse.redirect(
+        new URL(
+          `/login?callbackUrl=${encodeURIComponent(req.nextUrl.href)}`,
+          req.url
+        )
+      );
+      response.cookies.delete("token"); // Log out user
+      return response;
     }
     return NextResponse.next();
   }
@@ -65,5 +95,3 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
-
-/* new code */

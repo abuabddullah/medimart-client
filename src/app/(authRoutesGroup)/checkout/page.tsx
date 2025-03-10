@@ -22,10 +22,10 @@ import { uploadPrescription } from "@/src/lib/actions/prescriptions";
 import { clearCart } from "@/src/lib/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import { formatPrice } from "@/src/lib/utils";
+import { ICartItem } from "@/src/types/cart";
 import { AlertCircle, Loader2, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ICartItem } from "@/src/types/cart";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -34,7 +34,6 @@ export default function CheckoutPage() {
   const { items } = useAppSelector((state) => state.cart) as {
     items: ICartItem[];
   };
-  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(false);
   const [address, setAddress] = useState("");
@@ -48,17 +47,6 @@ export default function CheckoutPage() {
   const [prescriptionError, setPrescriptionError] = useState("");
 
   useEffect(() => {
-    // Redirect if not authenticated or cart is empty এটা middleware দিয়ে handle করব পরে
-    if (!isAuthenticated) {
-      toast({
-        title: "Login required",
-        description: "Please login to proceed to checkout",
-        variant: "destructive",
-      });
-      router.push("/login");
-      return;
-    }
-
     if (items.length === 0) {
       toast({
         title: "Empty cart",
@@ -67,7 +55,7 @@ export default function CheckoutPage() {
       });
       router.push("/cart");
     }
-  }, [isAuthenticated, items, router, toast]);
+  }, [items, router, toast]);
 
   const requiresPrescription = items.some((item) => item.requiresPrescription);
 

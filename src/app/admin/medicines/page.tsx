@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,14 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -28,24 +19,33 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useToast } from "@/hooks/use-toast";
-import { useAppSelector } from "@/src/lib/redux/hooks";
 import {
-  getMedicines,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import {
   createMedicine,
-  updateMedicine,
   deleteMedicine,
+  getMedicines,
+  updateMedicine,
 } from "@/src/lib/actions/medicines";
+import { useAppSelector } from "@/src/lib/redux/hooks";
 import { formatPrice } from "@/src/lib/utils";
-import { Loader2, Plus, Search, Edit, Trash2, AlertCircle } from "lucide-react";
 import { IMedicine } from "@/src/types/medicine";
+import { AlertCircle, Edit, Loader2, Plus, Search, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function AdminMedicinesPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
   const [medicines, setMedicines] = useState<IMedicine[]>([]);
@@ -73,23 +73,8 @@ export default function AdminMedicinesPage() {
   const [expiryDate, setExpiryDate] = useState<string>("");
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (user && user.role !== "admin") {
-      toast({
-        title: "Access Denied",
-        description: "You do not have permission to access this page",
-        variant: "destructive",
-      });
-      router.push("/");
-      return;
-    }
-
     fetchMedicines();
-  }, [isAuthenticated, router, user, toast]);
+  }, [router, user, toast]);
 
   const fetchMedicines = async (pageNum = 1, search = "") => {
     try {

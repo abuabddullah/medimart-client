@@ -39,7 +39,7 @@ export default function ProfilePage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
@@ -57,11 +57,6 @@ export default function ProfilePage() {
   const [reviews, setReviews] = useState<IMyReview[]>([]);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
     if (user) {
       setName(user.name || "");
       setPhone(user.phone || "");
@@ -105,7 +100,7 @@ export default function ProfilePage() {
     };
 
     fetchUserData();
-  }, [isAuthenticated, router, user, toast]);
+  }, [router, user, toast]);
 
   const handlePayment = async (orderId: string) => {
     const paymentResponse = await initiatePayment(orderId);

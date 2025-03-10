@@ -24,7 +24,6 @@ import {
   getMyReviews,
   updateReview,
 } from "@/src/lib/actions/reviews";
-import { useAppSelector } from "@/src/lib/redux/hooks";
 import { formatDate } from "@/src/lib/utils";
 import type { IMyReview } from "@/src/types/review";
 import { AlertCircle, Edit, Loader2, Star, Trash2 } from "lucide-react";
@@ -34,7 +33,6 @@ import { useEffect, useState } from "react";
 export default function ProfileReviewsPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState<IMyReview[]>([]);
@@ -52,13 +50,8 @@ export default function ProfileReviewsPage() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
     fetchMyReviews();
-  }, [isAuthenticated, router]);
+  }, [router]);
 
   const fetchMyReviews = async () => {
     try {

@@ -49,7 +49,7 @@ import { useEffect, useState } from "react";
 export default function AdminReviewsPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState<IReview[]>([]);
@@ -64,24 +64,8 @@ export default function AdminReviewsPage() {
   const [actionLoading, setActionLoading] = useState(false);
 
   useEffect(() => {
-    // Check authentication and admin role এটা middleware দিয়ে handle করব পরে
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (user && user.role !== "admin") {
-      toast({
-        title: "Access Denied",
-        description: "You do not have permission to access this page",
-        variant: "destructive",
-      });
-      router.push("/");
-      return;
-    }
-
     fetchReviews();
-  }, [isAuthenticated, router, user, toast]);
+  }, [router, user, toast]);
 
   const fetchReviews = async (pageNum = 1) => {
     try {

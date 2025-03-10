@@ -42,6 +42,7 @@ import {
 } from "@/src/lib/actions/orders";
 import { useAppSelector } from "@/src/lib/redux/hooks";
 import { formatPrice } from "@/src/lib/utils";
+import { IOrder } from "@/src/types/order.type";
 import {
   AlertCircle,
   Calendar,
@@ -53,12 +54,11 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IOrder } from "@/src/types/order.type";
 
 export default function AdminOrdersPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState<IOrder[]>([]);
@@ -74,23 +74,8 @@ export default function AdminOrdersPage() {
   const [statusLoading, setStatusLoading] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (user && user.role !== "admin") {
-      toast({
-        title: "Access Denied",
-        description: "You do not have permission to access this page",
-        variant: "destructive",
-      });
-      router.push("/");
-      return;
-    }
-
     fetchOrders();
-  }, [isAuthenticated, router, user, toast]);
+  }, [router, user, toast]);
 
   const fetchOrders = async (pageNum = 1) => {
     try {

@@ -52,7 +52,7 @@ import { useEffect, useState } from "react";
 export default function AdminUsersPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState<UserType[]>([]);
@@ -68,23 +68,8 @@ export default function AdminUsersPage() {
   const [statusLoading, setStatusLoading] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (user && user.role !== "admin") {
-      toast({
-        title: "Access Denied",
-        description: "You do not have permission to access this page",
-        variant: "destructive",
-      });
-      router.push("/");
-      return;
-    }
-
     fetchUsers();
-  }, [isAuthenticated, router, user, toast]);
+  }, [router, user, toast]);
 
   const fetchUsers = async () => {
     try {
