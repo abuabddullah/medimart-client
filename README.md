@@ -108,7 +108,6 @@ Asif A Owadud
 
 - যাতে promptly ui এ দেখা যায়
 - পরে আরো improve করতে হবে
-- pdf handle সরাতে হবে
 - using Moment.js for formattedDate
 - /shop page এ pagination / infinite scroll
 - create and update medicine এ picture upload option
