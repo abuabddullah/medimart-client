@@ -33,7 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { Label } from "@/src/components/Label";
+import { InputLabel } from "@/src/components/shared/Label";
 import { getAllUsers, updateUserStatus } from "@/src/lib/actions/auth";
 import { useAppSelector } from "@/src/lib/redux/hooks";
 import { UserType } from "@/src/types/auth";
@@ -308,7 +308,7 @@ export default function AdminUsersPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="status">Status</Label>
+                <InputLabel htmlFor="status">Status</InputLabel>
                 <Select
                   value={newStatus}
                   onValueChange={(value) => {

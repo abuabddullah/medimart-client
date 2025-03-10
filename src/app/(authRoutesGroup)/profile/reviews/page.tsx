@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { ReviewForm } from "@/src/components/review-form";
+import { ReviewForm } from "@/src/components/review/review-form";
 import {
   deleteReview,
   getMyReviews,

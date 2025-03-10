@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, HeartPulse, Pill, ShieldCheck, Truck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ReviewList from "../components/review/review-card";
 import { getCategories } from "../lib/actions/medicines";
-import ReviewList from "../components/review-card";
-import { getAllReviews, getApprovedReviews } from "../lib/actions/reviews";
+import { getApprovedReviews } from "../lib/actions/reviews";
 
 export default function HomePage() {
   const [categories, setCategories] = useState([

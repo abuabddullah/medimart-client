@@ -130,7 +130,6 @@ export async function createMedicine(medicineData: any) {
       cache: "no-store",
     });
     const data = await response.json();
-    console.log("🚀 ~ createMedicine ~ response:", data);
     return data;
   } catch (error) {
     console.error("Error creating medicine:", error);

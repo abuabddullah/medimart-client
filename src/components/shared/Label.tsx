@@ -1,4 +1,4 @@
-export function Label({
+export function InputLabel({
   htmlFor,
   children,
 }: {

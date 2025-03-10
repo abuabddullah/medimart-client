@@ -112,3 +112,19 @@ Asif A Owadud
 - /shop page এ pagination / infinite scroll
 - create and update medicine এ picture upload option
 - fix the quantity handle fn in src\app\medicine\[id]\page.tsx
+
+### submission
+
+Frontend:
+live link : https://medimart-client.vercel.app/
+github link : https://github.com/abuabddullah/medimart-client.git
+admin credential :
+
+- email : admin@admin.admin
+- pass : 000000
+
+backend :
+live link : https://medimert-server.vercel.app/
+github link : https://github.com/abuabddullah/medimart-server.git
+
+explanation : https://drive.google.com/file/d/1hIcAWxrOSbjFWekaytiDMShW8sElt0Us/view?usp=sharing

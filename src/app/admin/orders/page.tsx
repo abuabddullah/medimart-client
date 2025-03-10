@@ -176,7 +176,6 @@ export default function AdminOrdersPage() {
         orderId,
         orderPrescriptionStatus
       );
-      console.log("🚀 ~ AdminOrdersPage ~ response:", response);
 
       if (response.success) {
         toast({

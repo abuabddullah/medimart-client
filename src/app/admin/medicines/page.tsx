@@ -180,9 +180,7 @@ export default function AdminMedicinesPage() {
         expiryDate,
       };
 
-      console.log("🚀 ~ handleAddMedicine ~ medicineData:", medicineData);
       const response = await createMedicine(medicineData);
-      console.log("🚀 ~ handleAddMedicine ~ response:", response);
       if (response.success) {
         toast({
           title: "Medicine added",
@@ -234,7 +232,6 @@ export default function AdminMedicinesPage() {
         imageURL,
       };
 
-      console.log("🚀 ~ handleUpdateMedicine ~ medicineData:", medicineData);
       const response = await updateMedicine(selectedMedicine._id, medicineData);
 
       if (response.success) {

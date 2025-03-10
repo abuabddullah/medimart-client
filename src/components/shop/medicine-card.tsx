@@ -9,7 +9,7 @@ import { formatPrice } from "@/src/lib/utils";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { MedicineCardProps } from "../types/medicine";
+import { MedicineCardProps } from "../../types/medicine";
 
 export function MedicineCard({
   _id,

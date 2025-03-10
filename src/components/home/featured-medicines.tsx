@@ -1,6 +1,6 @@
 "use client";
 
-import { MedicineCard } from "@/src/components/medicine-card";
+import { MedicineCard } from "@/src/components/shop/medicine-card";
 import { useState } from "react";
 
 export function FeaturedMedicines() {

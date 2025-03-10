@@ -526,8 +526,8 @@ export default function AdminDashboard() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Recent Prescriptions</CardTitle>
-              <Button size="sm" asChild>
-                <Link href="/admin/prescriptions">View All</Link>
+              <Button size="sm" disabled asChild>
+                View All
               </Button>
             </CardHeader>
             <CardContent>

@@ -1,6 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
-import Footer from "@/src/components/footer";
-import Header from "@/src/components/header";
+import Footer from "@/src/components/shared/footer";
+import Header from "@/src/components/shared/header";
 import { ReduxProvider } from "@/src/lib/redux/provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

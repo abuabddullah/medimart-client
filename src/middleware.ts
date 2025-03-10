@@ -4,9 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  console.log("🚀 ~ middleware ~ pathname:", pathname);
   const token = (await cookies()).get("token")?.value;
-  console.log("🚀 ~ middleware ~ token:", token);
 
   let userRole = null;
 
@@ -18,8 +16,6 @@ export async function middleware(req: NextRequest) {
       console.error("Invalid token:", error);
     }
   }
-
-  console.log("🚀 ~ middleware ~ userRole:", userRole);
 
   // Define public and protected routes
   const openRoutes = [

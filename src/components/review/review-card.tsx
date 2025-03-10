@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { IReview } from "@/src/types/review";
 import moment from "moment";
-import { IReview } from "../types/review";
 
 const ReviewList = ({ reviews }: { reviews: IReview[] }) => {
   return (
