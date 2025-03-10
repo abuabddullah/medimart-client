@@ -1,4 +1,4 @@
-import { AuthState, IAuthState, IUserType, UserType } from "@/src/types/auth";
+import { IAuthState, IUserType } from "@/src/types/auth";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 // const initialState: AuthState = {
