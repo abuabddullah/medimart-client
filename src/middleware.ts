@@ -22,6 +22,8 @@ export async function middleware(req: NextRequest) {
     "/",
     "/login",
     "/register",
+    "/about",
+    "/contact",
     "/shop",
     "/medicine",
     /^\/medicine\/[\w-]+$/,

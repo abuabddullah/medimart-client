@@ -12,4 +12,5 @@ export interface IMedicine {
   imageURL?: string;
   expiryDate?: string;
   quantity?: any;
+  isOffered?: boolean;
 }

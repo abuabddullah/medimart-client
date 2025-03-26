@@ -128,3 +128,15 @@ live link : https://medimert-server.vercel.app/
 github link : https://github.com/abuabddullah/medimart-server.git
 
 explanation : https://drive.google.com/file/d/1hIcAWxrOSbjFWekaytiDMShW8sElt0Us/view?usp=sharing
+
+# issues
+
+- details page rating review suggest medicne
+- reaview card logo
+- logout nav e logo
+- toast i.o alert
+- link prescription \_id with the order
+- allow ordery by prescription
+- footer unnecessary link
+- login page auto admin and user credential
+- profile page

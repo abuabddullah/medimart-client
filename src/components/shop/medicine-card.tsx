@@ -19,6 +19,7 @@ export function MedicineCard({
   manufacturer,
   imageURL,
   requiresPrescription,
+  isOffered,
 }: MedicineCardProps) {
   const dispatch = useAppDispatch();
   const { toast } = useToast();
@@ -73,16 +74,24 @@ export function MedicineCard({
           </h3>
         </Link>
         <div className="text-xs text-muted-foreground mt-1">{manufacturer}</div>
-        <div className="mt-2 font-bold">{formatPrice(price as number)}</div>
+
+        <div className="mt-2 font-bold">
+          {isOffered && (
+            <span className="mt-2 font-bold line-through text-blue-400">
+              {formatPrice((price as number) * 1.5)}
+            </span>
+          )}{" "}
+          {formatPrice(price as number)}
+        </div>
       </CardContent>
       <CardFooter className="p-4 pt-0 flex gap-2">
         <Button className="w-full" size="sm" onClick={handleAddToCart}>
           <ShoppingCart className="h-4 w-4 mr-2" />
           Add to Cart
         </Button>
-        <Button variant="outline" size="icon" className="h-8 w-8">
+        {/* <Button variant="outline" size="icon" className="h-8 w-8">
           <Heart className="h-4 w-4" />
-        </Button>
+        </Button> */}
       </CardFooter>
     </Card>
   );

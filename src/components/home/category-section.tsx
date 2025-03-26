@@ -1,5 +1,6 @@
-import Link from "next/link";
+import Headline from "@/components/shared/Heading";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 export function CategorySection() {
   const categories = [
@@ -18,9 +19,7 @@ export function CategorySection() {
   return (
     <section className="py-12">
       <div className="container px-4 md:px-6">
-        <h2 className="text-2xl font-bold text-center mb-8">
-          Browse by Category
-        </h2>
+        <Headline heading="Browse by Category" />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((category) => (
             <Link key={category.name} href={category.href}>

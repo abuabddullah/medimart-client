@@ -1,9 +1,15 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import FAQ from "@/src/components/homePage/FAQ";
+import HeroBanner from "@/src/components/homePage/HeroBanner";
+import HeroCarousel from "@/src/components/homePage/HeroCarousel";
+import OfferedMedicines from "@/src/components/homePage/OfferedMedicines";
+import OurPartners from "@/src/components/homePage/OurPartners";
 import { ArrowRight, HeartPulse, Pill, ShieldCheck, Truck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import NewsLetter from "../components/homePage/NewsLetter";
 import ReviewList from "../components/review/review-card";
 import { getCategories } from "../lib/actions/medicines";
 import { getApprovedReviews } from "../lib/actions/reviews";
@@ -27,7 +33,7 @@ export default function HomePage() {
         // Fetch medicine categories
         const categoriesResponse = await getCategories();
         if (categoriesResponse.success) {
-          setCategories((prevCtg) => [...prevCtg, ...categoriesResponse.data]);
+          setCategories((prevCtg) => [...categoriesResponse.data]);
         }
 
         // Fetch reviews
@@ -70,35 +76,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-16 md:py-24">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Your Health, Delivered
-            </h1>
-            <p className="text-xl text-muted-foreground mb-6">
-              Get your medicines delivered to your doorstep with just a few
-              clicks. Fast, reliable, and secure.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <Link href="/shop">Shop Medicines</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/prescriptions/upload">Order By Prescription</Link>
-              </Button>
-            </div>
-          </div>
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src="/placeholder.svg?height=400&width=500"
-              alt="MediMart Hero"
-              className="max-w-full rounded-lg shadow-lg"
-            />
-          </div>
-        </div>
-      </section>
+      <HeroCarousel />
 
       {/* Categories Section */}
       <section className="py-16">
@@ -111,8 +89,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.slice(0, 8).map((category, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.slice(0, 4).map((category, index) => (
               <Link key={index} href={`/shop?category=${category}`}>
                 <Card className="h-full transition-all hover:shadow-md">
                   <CardContent className="p-6 flex flex-col items-center text-center">
@@ -129,6 +107,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Hero Section */}
+      <HeroBanner />
+
+      <OfferedMedicines />
 
       {/* Features Section */}
       <section className="py-16 bg-muted/50">
@@ -159,7 +142,7 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="bg-primary text-primary-foreground rounded-xl p-8 md:p-12">
+          <div className="bg-gradient-to-r from-cyan-100 via-blue-200 to-blue-600 text-primary-foreground rounded-xl p-8 md:p-12">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">
                 Need a Prescription Medicine?
@@ -198,6 +181,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <NewsLetter />
+      <OurPartners />
+
+      <FAQ />
     </div>
   );
 }
