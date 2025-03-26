@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { addToCart } from "@/src/lib/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import { formatPrice } from "@/src/lib/utils";
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, ShoppingCart, StarIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MedicineCardProps } from "../../types/medicine";
@@ -20,6 +20,8 @@ export function MedicineCard({
   imageURL,
   requiresPrescription,
   isOffered,
+  averageRating,
+  totalReviews,
 }: MedicineCardProps) {
   const dispatch = useAppDispatch();
   const { toast } = useToast();
@@ -67,13 +69,32 @@ export function MedicineCard({
         )}
       </div>
       <CardContent className="p-4">
-        <div className="text-xs text-muted-foreground mb-1">{category}</div>
-        <Link href={`/medicine/${_id}`}>
-          <h3 className="font-semibold line-clamp-1 hover:text-primary transition-colors">
-            {name}
-          </h3>
-        </Link>
-        <div className="text-xs text-muted-foreground mt-1">{manufacturer}</div>
+        <div className="flex justify-between">
+          <div>
+            <div className="text-xs text-muted-foreground mb-1">{category}</div>
+            <Link href={`/medicine/${_id}`}>
+              <h3 className="font-semibold line-clamp-1 hover:text-primary transition-colors">
+                {name}
+              </h3>
+            </Link>
+            <div className="text-xs text-muted-foreground mt-1">
+              {manufacturer}
+            </div>
+          </div>
+
+          <div className="text-orange-500 flex items-center  mt-2">
+            {[...Array(5)].map((_, index) => (
+              <StarIcon
+                key={index}
+                className={`h-4 w-4 ${
+                  index < Math.floor(averageRating || 0)
+                    ? "text-blue-500 fill-blue-300"
+                    : "text-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
 
         <div className="mt-2 font-bold">
           {isOffered && (

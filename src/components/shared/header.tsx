@@ -14,8 +14,9 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import LogOutDropdown from "./LogOutDropdown";
 
 export default function Header() {
   const pathname = usePathname();
@@ -24,6 +25,7 @@ export default function Header() {
   const { user, isAuthenticated } = useAppSelector((state) => state?.auth);
   const { items } = useAppSelector((state) => state.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -36,6 +38,7 @@ export default function Header() {
       title: "Logged out",
       description: "You have been successfully logged out",
     });
+    router.replace("/");
   };
 
   const navItems = [
@@ -97,15 +100,8 @@ export default function Header() {
                   Orders
                 </Button>
               </Link>
-              <Link href="/profile">
-                <Button variant="ghost" size="sm">
-                  <User className="h-4 w-4 mr-2" />
-                  Profile
-                </Button>
-              </Link>
-              <Button variant="outline" size="sm" onClick={handleLogout}>
-                Logout
-              </Button>
+
+              <LogOutDropdown user={user!} />
             </div>
           ) : (
             <div className="hidden md:flex items-center gap-4">

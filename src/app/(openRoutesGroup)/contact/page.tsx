@@ -41,54 +41,6 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <MailIcon className="h-6 w-6 text-blue-500 mt-1" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium">Email</h3>
-                  <p className="text-gray-600">support@medimart.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <Phone className="h-6 w-6 text-blue-500 mt-1" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 987-6543</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <MapPin className="h-6 w-6 text-blue-500 mt-1" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium">Address</h3>
-                  <p className="text-gray-600">
-                    101 Medimart Plaza
-                    <br />
-                    Health City, HC 67890
-                    <br />
-                    United States
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <ClockIcon className="h-6 w-6 text-blue-500 mt-1" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium">Working Hours</h3>
-                  <p className="text-gray-600">
-                    Monday - Friday: 8:00 AM - 8:00 PM
-                    <br />
-                    Saturday - Sunday: 9:00 AM - 6:00 PM
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Contact Form */}
           <div>
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
@@ -178,6 +130,53 @@ export default function Contact() {
                 Send Message
               </button>
             </form>
+          </div>
+          {/* Contact Information */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <MailIcon className="h-6 w-6 text-blue-500 mt-1" />
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium">Email</h3>
+                  <p className="text-gray-600">support@medimart.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Phone className="h-6 w-6 text-blue-500 mt-1" />
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium">Phone</h3>
+                  <p className="text-gray-600">+1 (555) 987-6543</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <MapPin className="h-6 w-6 text-blue-500 mt-1" />
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium">Address</h3>
+                  <p className="text-gray-600">
+                    101 Medimart Plaza
+                    <br />
+                    Health City, HC 67890
+                    <br />
+                    United States
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <ClockIcon className="h-6 w-6 text-blue-500 mt-1" />
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium">Working Hours</h3>
+                  <p className="text-gray-600">
+                    Monday - Friday: 8:00 AM - 8:00 PM
+                    <br />
+                    Saturday - Sunday: 9:00 AM - 6:00 PM
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

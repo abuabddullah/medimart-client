@@ -13,6 +13,7 @@ import NewsLetter from "../components/homePage/NewsLetter";
 import ReviewList from "../components/review/review-card";
 import { getCategories } from "../lib/actions/medicines";
 import { getApprovedReviews } from "../lib/actions/reviews";
+import Headline from "@/components/shared/Heading";
 
 export default function HomePage() {
   const [categories, setCategories] = useState([
@@ -117,7 +118,7 @@ export default function HomePage() {
       <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose MediMart?</h2>
+            <Headline heading="Why Choose MediMart?" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
               We're committed to providing you with the best healthcare
               experience online
@@ -169,7 +170,7 @@ export default function HomePage() {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">What Our Customers Say</h2>
+            <Headline heading="What Our Customers Say" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Don't just take our word for it. Here's what our customers have to
               say about their experience with MediMart.

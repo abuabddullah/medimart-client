@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import ReviewManagement from "@/src/components/shop/ReviewManagement";
+import SuggestedProducts from "@/src/components/shop/SuggestedProducts";
 import { getMedicineById } from "@/src/lib/actions/medicines";
 import { addToCart } from "@/src/lib/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
@@ -259,6 +261,9 @@ export default function MedicineDetailsPage() {
           </p>
         </TabsContent>
       </Tabs>
+
+      <ReviewManagement medicineId={medicine?._id} />
+      <SuggestedProducts medicine={medicine} />
     </div>
   );
 }

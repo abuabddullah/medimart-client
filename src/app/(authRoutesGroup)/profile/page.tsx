@@ -15,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import ProfileCard from "@/src/components/profile/ProfileCard";
 import { changePassword, updateUserProfile } from "@/src/lib/actions/auth";
 import { getMyOrders, initiatePayment } from "@/src/lib/actions/orders";
 import { getMyPrescriptions } from "@/src/lib/actions/prescriptions";
@@ -46,6 +47,7 @@ export default function ProfilePage() {
   const [prescriptions, setPrescriptions] = useState([]);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
@@ -60,6 +62,7 @@ export default function ProfilePage() {
     if (user) {
       setName(user.name || "");
       setPhone(user.phone || "");
+      setAvatar(user.avatar || "");
       setStreet(user.address?.street || "");
       setCity(user.address?.city || "");
       setPostalCode(user.address?.postalCode || "");
@@ -129,6 +132,7 @@ export default function ProfilePage() {
       const userData = {
         name,
         phone,
+        avatar,
         address: {
           street,
           city,
@@ -253,9 +257,10 @@ export default function ProfilePage() {
 
         {/* Profile Tab */}
         <TabsContent value="profile" className="space-y-6">
+          <ProfileCard />
           <Card>
             <CardHeader>
-              <CardTitle>Personal Information</CardTitle>
+              <CardTitle>Update Profile</CardTitle>
               <CardDescription>
                 Update your personal information
               </CardDescription>
@@ -283,6 +288,15 @@ export default function ProfilePage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Enter your phone number"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="avatar">Avatar</Label>
+                <Input
+                  id="avatar"
+                  value={avatar}
+                  onChange={(e) => setAvatar(e.target.value)}
+                  placeholder="Enter avatar url"
                 />
               </div>
               <div className="space-y-2">
@@ -657,7 +671,7 @@ export default function ProfilePage() {
                 <div className="flex justify-center py-8">
                   <Loader2 className="h-8 w-8 animate-spin text-primary" />
                 </div>
-              ) : reviews.length === 0 ? (
+              ) : reviews?.length === 0 ? (
                 <div className="text-center py-8">
                   <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <h3 className="text-lg font-medium mb-2">No reviews yet</h3>
@@ -707,7 +721,7 @@ export default function ProfilePage() {
                     </div>
                   ))}
 
-                  {reviews.length > 3 && (
+                  {reviews?.length > 3 && (
                     <div className="text-center mt-4">
                       <Button
                         variant="outline"

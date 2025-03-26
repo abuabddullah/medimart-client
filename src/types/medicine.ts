@@ -7,6 +7,8 @@ export interface IMedicine {
   manufacturer: string;
   price: number;
   stock: number;
+  averageRating?: number;
+  totalReviews?: number;
   requiresPrescription: boolean;
   description?: string;
   imageURL?: string;

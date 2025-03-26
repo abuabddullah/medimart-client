@@ -99,6 +99,7 @@ export async function getUserProfile() {
 export async function updateUserProfile(userData: {
   name?: string;
   phone?: string;
+  avatar?: string;
   address?: {
     street: string;
     city: string;

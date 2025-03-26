@@ -68,6 +68,16 @@ export default function LoginPage() {
     }
   };
 
+  const fillAdminCredentials = () => {
+    setEmail("admin@admin.admin");
+    setPassword("000000");
+  };
+
+  const fillUserCredentials = () => {
+    setEmail("asifaowadud@gmail.com");
+    setPassword("000000");
+  };
+
   return (
     <div className="container flex items-center justify-center min-h-[80vh] py-8">
       <Card className="w-full max-w-md">
@@ -110,6 +120,25 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
+            {/* Admin and User buttons */}
+            <div className="flex gap-4 mb-4">
+              <Button
+                type="button"
+                onClick={fillAdminCredentials}
+                className="w-full"
+              >
+                Admin Login
+              </Button>
+              <Button
+                type="button"
+                onClick={fillUserCredentials}
+                className="w-full"
+              >
+                User Login
+              </Button>
+            </div>
+
+            {/* Login button */}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </Button>
