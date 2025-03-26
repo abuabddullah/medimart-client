@@ -131,12 +131,15 @@ explanation : https://drive.google.com/file/d/1hIcAWxrOSbjFWekaytiDMShW8sElt0Us/
 
 # issues
 
-- details page rating review suggest medicne
-- reaview card logo
-- logout nav e logo
+- website reaview card logo
 - toast i.o alert
 - link prescription \_id with the order
 - allow ordery by prescription
 - footer unnecessary link
-- login page auto admin and user credential
-- profile page
+- chart in dashboard
+- dashboard order/user/medicine admin veiew button(unnecessary)
+- full functional pagination in shop page
+- use 3d animation in offered product compoetn
+- toast i.o alert
+- multiple item add in cart
+- use server action instead of direct api integration
