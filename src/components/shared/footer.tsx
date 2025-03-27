@@ -1,3 +1,4 @@
+import { FacebookIcon, GithubIcon, LinkedinIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -32,10 +33,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/prescriptions"
+                  href="/prescriptions/upload"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Prescriptions
+                  Prescription Upload
                 </Link>
               </li>
               <li>
@@ -60,59 +61,58 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/faq"
+                <a
+                  href="/#faq"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   FAQs
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  About
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/shipping"
+                  href="/cart"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Shipping Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/returns"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Returns & Refunds
+                  Cart
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-medium mb-4">Legal</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/terms"
+            <div>
+              <h4 className="font-semibold mb-4">Follow Us</h4>
+              <div className="flex space-x-4">
+                <a
+                  href="https://www.facebook.com/asifaowadud/"
+                  target="_blank"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
+                  <FacebookIcon />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/asifaowadud"
+                  target="_blank"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cookies"
+                  <LinkedinIcon />
+                </a>
+                <a
+                  href="https://github.com/abuabddullah"
+                  target="_blank"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Cookie Policy
-                </Link>
-              </li>
-            </ul>
+                  <GithubIcon />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         <div className="border-t mt-8 pt-8 text-center text-muted-foreground">

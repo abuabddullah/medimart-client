@@ -112,31 +112,20 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <HeroBanner />
-
-      <OfferedMedicines />
-
-      {/* Features Section */}
-      <section className="py-16 bg-muted/50">
+      {/* Reviews Section */}
+      <section className="py-16 bg-muted/30">
         <div className="max-w-5xl  mx-auto px-4">
           <div className="text-center mb-12">
-            <Headline heading="Why Choose MediMart?" />
+            <Headline heading="What Our Customers Say" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We're committed to providing you with the best healthcare
-              experience online
+              Don't just take our word for it. Here's what our customers have to
+              say about their experience with MediMart.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="font-bold text-xl mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 gap-8">
+            {/* <ReviewList reviews={reviews} /> */}
+            <ReviewCarousel reviews={reviews} />
           </div>
         </div>
       </section>
@@ -167,20 +156,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section className="py-16 bg-muted/30">
+      <OfferedMedicines />
+
+      {/* Features Section */}
+      <section className="py-16 bg-muted/50">
         <div className="max-w-5xl  mx-auto px-4">
           <div className="text-center mb-12">
-            <Headline heading="What Our Customers Say" />
+            <Headline heading="Why Choose MediMart?" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our customers have to
-              say about their experience with MediMart.
+              We're committed to providing you with the best healthcare
+              experience online
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8">
-            {/* <ReviewList reviews={reviews} /> */}
-            <ReviewCarousel reviews={reviews} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="mb-4">{feature.icon}</div>
+                <h3 className="font-bold text-xl mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
