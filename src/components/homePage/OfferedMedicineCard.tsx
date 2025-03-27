@@ -20,7 +20,6 @@ export function OfferedMedicineCard({
   manufacturer,
   imageURL,
   requiresPrescription,
-  isOffered,
   averageRating,
   totalReviews,
 }: MedicineCardProps) {
@@ -106,11 +105,9 @@ export function OfferedMedicineCard({
           </div>
 
           <div className="mt-2 font-bold">
-            {isOffered && (
-              <span className="mt-2 font-bold line-through text-blue-400">
-                {formatPrice((price as number) * 1.5)}
-              </span>
-            )}{" "}
+            <span className="mt-2 font-bold line-through text-blue-400">
+              {formatPrice((price as number) * 1.5)}
+            </span>{" "}
             {formatPrice(price as number)}
           </div>
         </CardContent>
