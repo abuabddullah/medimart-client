@@ -3,6 +3,7 @@ import { IReview } from "@/src/types/review";
 import moment from "moment";
 
 const ReviewList = ({ reviews }: { reviews: IReview[] }) => {
+  console.log("🚀 ~ ReviewList ~ reviews:", reviews);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {reviews.map((review: IReview) => {

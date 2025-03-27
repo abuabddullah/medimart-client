@@ -16,28 +16,6 @@ const ProfileCard = () => {
     <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8 m-8">
       <div className="grid md:grid-cols-3 gap-8">
         {/* Left Column - Avatar & Basic Info */}
-        <div className="md:col-span-1 flex flex-col items-center p-6 bg-gradient-to-b from-blue-50 to-white rounded-xl">
-          <div className="relative group">
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className="w-40 h-40 rounded-full border-4 border-blue-500 shadow-lg object-cover"
-            />
-            <span
-              className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-white ${
-                user.status === "active"
-                  ? "bg-green-500 animate-pulse"
-                  : "bg-gray-400"
-              }`}
-            ></span>
-          </div>
-          <h2 className="text-2xl font-bold mt-4 text-gray-800">{user.name}</h2>
-          <span className="px-4 py-1.5 mt-3 bg-blue-500 text-white rounded-full text-sm font-medium">
-            {user.role!.charAt(0).toUpperCase() + user.role!.slice(1)}
-          </span>
-        </div>
-
-        {/* Right Column - Detailed Info */}
         <div className="md:col-span-2 space-y-6">
           {/* Contact Information */}
           <div className="bg-gray-50 rounded-xl p-6 space-y-4">
@@ -102,6 +80,32 @@ const ProfileCard = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Right Column - Detailed Info */}
+
+        <div className="md:col-span-1 flex flex-col items-center p-6 bg-gradient-to-b from-blue-50 to-white rounded-xl">
+          <div className="relative group">
+            <img
+              src={
+                user.avatar ||
+                "https://res.cloudinary.com/dglsw3gml/image/upload/v1742799359/bicycle-shop/avatar_jrnud5.jpg"
+              }
+              alt={user.name}
+              className="w-40 h-40 rounded-full border-4 border-blue-500 shadow-lg object-cover"
+            />
+            <span
+              className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-white ${
+                user.status === "active"
+                  ? "bg-green-500 animate-pulse"
+                  : "bg-gray-400"
+              }`}
+            ></span>
+          </div>
+          <h2 className="text-2xl font-bold mt-4 text-gray-800">{user.name}</h2>
+          <span className="px-4 py-1.5 mt-3 bg-blue-500 text-white rounded-full text-sm font-medium">
+            {user.role!.charAt(0).toUpperCase() + user.role!.slice(1)}
+          </span>
         </div>
       </div>
     </div>

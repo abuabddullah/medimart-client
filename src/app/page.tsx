@@ -14,6 +14,7 @@ import ReviewList from "../components/review/review-card";
 import { getCategories } from "../lib/actions/medicines";
 import { getApprovedReviews } from "../lib/actions/reviews";
 import Headline from "@/components/shared/Heading";
+import ReviewCarousel from "../components/review/ReviewCarousel";
 
 export default function HomePage() {
   const [categories, setCategories] = useState([
@@ -81,7 +82,7 @@ export default function HomePage() {
 
       {/* Categories Section */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="max-w-5xl  mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Browse by Category</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -116,7 +117,7 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="py-16 bg-muted/50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-5xl  mx-auto px-4">
           <div className="text-center mb-12">
             <Headline heading="Why Choose MediMart?" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -168,7 +169,7 @@ export default function HomePage() {
 
       {/* Reviews Section */}
       <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
+        <div className="max-w-5xl  mx-auto px-4">
           <div className="text-center mb-12">
             <Headline heading="What Our Customers Say" />
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -178,7 +179,8 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-8">
-            <ReviewList reviews={reviews} />
+            {/* <ReviewList reviews={reviews} /> */}
+            <ReviewCarousel reviews={reviews} />
           </div>
         </div>
       </section>

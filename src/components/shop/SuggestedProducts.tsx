@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { IMedicine } from "@/src/types/medicine";
 import Headline from "@/components/shared/Heading";
 import SkeletonMedicineCard from "@/components/shared/SkeletonMedicineCard";
-import { MedicineCard } from "./medicine-card";
 import { getMedicines } from "@/src/lib/actions/medicines";
+import { IMedicine } from "@/src/types/medicine";
+import { useEffect, useState } from "react";
+import { MedicineCard } from "./medicine-card";
 
 const SuggestedProducts = ({ medicine }: { medicine: IMedicine }) => {
   const [medicines, setMedicines] = useState<IMedicine[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -25,16 +26,23 @@ const SuggestedProducts = ({ medicine }: { medicine: IMedicine }) => {
     };
 
     fetchData();
-  }, []);
-  const [suggestedMedicines, setSuggestedMedicines] = useState<IMedicine[]>([]);
+  }, []); // This useEffect runs only once on component mount
+
+  const [suggestedMedicines, setSuggestedMedicines] = useState<IMedicine[]>([
+    medicine,
+  ]);
+
   useEffect(() => {
-    if (medicines) {
+    if (medicines.length > 0) {
+      // Make sure medicines have been loaded
+
       const filtered = medicines.filter(
         (m) => m.category === medicine.category && m._id !== medicine._id
       );
+
       setSuggestedMedicines(filtered);
     }
-  }, [medicines, medicine]);
+  }, [medicines, medicine]); // This will trigger when `medicines` or `medicine` changes
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -43,12 +51,14 @@ const SuggestedProducts = ({ medicine }: { medicine: IMedicine }) => {
       <div className="text-center">
         <Headline heading="Suggested Medicines" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="max-w-5xl min-h-24 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading &&
           [...Array(3)].map((_, index) => <SkeletonMedicineCard key={index} />)}
-        {suggestedMedicines.map((product: IMedicine) => (
-          <MedicineCard key={product._id} {...medicine} />
-        ))}
+        {suggestedMedicines.length > 0
+          ? suggestedMedicines.map((product: IMedicine) => (
+              <MedicineCard key={product._id} {...product} /> // Pass the product, not medicine
+            ))
+          : "No Suggestion for this medicine"}
       </div>
     </div>
   );

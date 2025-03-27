@@ -1,4 +1,5 @@
 "use client";
+import { useToast } from "@/hooks/use-toast";
 import { ClockIcon, MailIcon, MapPin, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 
@@ -10,6 +11,7 @@ interface IFormInputs {
 }
 
 export default function Contact() {
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
@@ -22,9 +24,16 @@ export default function Contact() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log("Form data:", data);
       reset();
-      alert("Thank you! Our team will get back to you soon.");
+      toast({
+        title: "Message Sent",
+        description: "Thank you! Our team will get back to you soon.",
+      });
     } catch (error) {
-      alert("Something went wrong! Please try again.");
+      toast({
+        title: "Not Applicable",
+        description: "Something went wrong! Please try again.",
+        variant: "destructive",
+      });
     }
   };
 

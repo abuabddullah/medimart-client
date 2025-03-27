@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Headline from "../../../components/shared/Heading";
 import SkeletonMedicineCard from "../../../components/shared/SkeletonMedicineCard";
+import { OfferedMedicineCard } from "./OfferedMedicineCard";
 
 const OfferedMedicines = () => {
   const [medicines, setMedicines] = useState<IMedicine[]>([]);
@@ -57,7 +58,7 @@ const OfferedMedicines = () => {
   }, [medicines]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-12">
+    <div className="w-full max-w-5xl mx-auto py-12">
       <Headline heading="Offered Medicines" />
       <div className="flex justify-center gap-4 my-8">
         {["hours", "minutes", "seconds"].map((unit, index) => (
@@ -108,11 +109,7 @@ const OfferedMedicines = () => {
               <SkeletonMedicineCard key={index} />
             ))
           : offeredMedicines.map((medicine) => (
-              <MedicineCard
-                isOffered={true}
-                {...medicine}
-                key={medicine?._id}
-              />
+              <OfferedMedicineCard {...medicine} key={medicine?._id} />
             ))}
       </div>
     </div>

@@ -143,3 +143,4 @@ explanation : https://drive.google.com/file/d/1hIcAWxrOSbjFWekaytiDMShW8sElt0Us/
 - toast i.o alert
 - multiple item add in cart
 - use server action instead of direct api integration
+- profilecard demo img

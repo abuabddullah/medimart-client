@@ -1,6 +1,8 @@
+import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
 const NewsLetter: React.FC = () => {
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -8,7 +10,11 @@ const NewsLetter: React.FC = () => {
     e.preventDefault();
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
-      alert("Please enter a valid email address");
+      toast({
+        title: "Not Applicable",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -29,20 +35,36 @@ const NewsLetter: React.FC = () => {
 
       const data = await response.json();
       if (data.message) {
-        alert(data.message);
+        toast({
+          title: "Not Applicable",
+          description:
+            data.message || "Something went wrong! Please try again.",
+          variant: "destructive",
+        });
         return;
       }
 
       if (data.success) {
-        alert("Successfully subscribed!");
+        toast({
+          title: "Subscribed",
+          description: "Successfully subscribed!",
+        });
         setEmail(""); // Reset email input after successful subscription
       } else {
-        alert("Something went wrong! Please try again.");
+        toast({
+          title: "Not Applicable",
+          description: "Something went wrong! Please try again.",
+          variant: "destructive",
+        });
       }
     } catch (error) {
-      alert("Something went wrong!");
+      toast({
+        title: "Not Applicable",
+        description: "Something went wrong! Please try again.",
+        variant: "destructive",
+      });
     } finally {
-      setIsSubmitting(false); // Reset the submitting state
+      setIsSubmitting(false);
     }
   };
 

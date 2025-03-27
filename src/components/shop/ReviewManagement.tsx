@@ -193,7 +193,7 @@ const ReviewManagement = ({ medicineId }: { medicineId: string }) => {
                 rows={4}
               ></textarea>
             </div>
-            <div className="flex items-center justify-between my-4">
+            <div className="lg:flex items-center justify-between my-4">
               <div className="border border-blue-200 rounded-lg p-4 bg-blue-100">
                 <StarRatingComponent
                   rating={averageRating}

@@ -4,7 +4,7 @@ import { Button } from "../../../components/ui/button";
 const HeroBanner = () => {
   return (
     <section className="bg-gradient-to-r from-cyan-100 via-blue-200 to-blue-600 py-10 lg:py-16">
-      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center">
+      <div className="max-w-5xl mx-auto px-4 flex flex-col lg:flex-row items-center">
         <div className="lg:w-1/2 mb-8 lg:mb-0">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4">
             Your Health, Delivered
@@ -22,7 +22,7 @@ const HeroBanner = () => {
             </Button>
           </div>
         </div>
-        <div className="lg:w-1/2 flex justify-center">
+        <div className="lg:w-1/2 flex justify-center lg:justify-end">
           <img
             src="/placeholder.svg"
             alt="MediMart Hero"
